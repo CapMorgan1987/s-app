@@ -67,7 +67,6 @@ export const temp = {
           `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=38313d7973790bba77d4c08e35bab1d0&units=metric&lang=hr`
         );
         commit("setCity", cW);
-        console.log(cW)
       }
       catch (error) {
         commit("showError", error);

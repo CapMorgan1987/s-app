@@ -3,9 +3,15 @@
     <v-container class="mb-6">
       <v-row class="d-flex justify-center">
         <v-col cols="12" md="4">
-          <v-form @submit.prevent="findCity">
-            <v-text-field v-model="city" label="Grad..."></v-text-field>
-            <v-btn type="submit">Traži...</v-btn>
+          <v-form @submit.prevent="findCity" v-model="valid">
+            <v-text-field
+              v-model="city"
+              label="Grad..."
+              :rules="cityRules"
+            ></v-text-field>
+            <v-btn type="submit" color="primary" :disabled="!valid"
+              >Traži...</v-btn
+            >
             <v-alert
               border="right"
               colored-border
@@ -74,6 +80,8 @@
         city: "",
         errorMsg: "",
         tab: null,
+        cityRules: [(v) => !!v || "Upiši grad"],
+        valid: false,
       };
     },
     components: {
