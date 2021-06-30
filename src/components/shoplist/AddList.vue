@@ -3,21 +3,36 @@
     <v-row class="d-flex justify-center">
       <v-col cols="12" md="6">
         <v-form @submit.prevent="addList" v-model="valid">
-          <v-select :items="shops" label="Shop" v-model="listName"></v-select>
+          <v-select
+            :items="shops"
+            label="Trgovina"
+            v-model="listName"
+            solo
+          ></v-select>
           <v-text-field
             v-model="items.item"
             :rules="listItemRules"
             :counter="20"
-            placeholder="Item name"
+            placeholder="Proizvod"
+            solo
           >
           </v-text-field>
           <v-text-field
             v-model="items.quantity"
             :rules="listQuantityRules"
             :counter="10"
-            placeholder="Quantity"
+            placeholder="Količina"
+            solo
           >
           </v-text-field>
+          <v-btn
+            color="rgba(91, 230, 64, 0.685)"
+            @click="addItem"
+            :disabled="!valid"
+          >
+            <v-icon color="white">mdi-plus</v-icon>
+            <span class="white--text">Dodaj proizvod</span>
+          </v-btn>
           <div v-if="list">
             <v-card
               v-for="item in list"
@@ -30,13 +45,14 @@
               </v-btn>
             </v-card>
           </div>
-          <v-btn color="primary" @click="addItem" :disabled="!valid">
+          <v-btn
+            v-if="list != ''"
+            color="primary"
+            type="submit"
+            :disabled="checkList"
+          >
             <v-icon color="white">mdi-plus</v-icon>
-            <span class="white--text">Add item</span>
-          </v-btn>
-          <v-btn color="primary" type="submit" :disabled="checkList">
-            <v-icon color="white">mdi-plus</v-icon>
-            <span class="white--text">Add list</span>
+            <span class="white--text">Dodaj listu</span>
           </v-btn>
         </v-form>
       </v-col>
@@ -54,13 +70,13 @@
       return {
         shops: ["Lidl", "Kaufland", "Eurospin", "Plodine", "Konzum"],
         listItemRules: [
-          (v) => !!v || "Add item",
-          (v) => v.length >= 3 || "Must be longer than 2 characters",
-          (v) => v.length <= 20 || "Must be shorter than 20 characters",
+          (v) => !!v || "Dodaj proizvod",
+          (v) => v.length >= 3 || "Proizvod mora imati min 3 znaka",
+          (v) => v.length <= 20 || "Proizovd mora biti kraći od 30 znakova",
         ],
         listQuantityRules: [
-          (v) => !!v || "Add quantity",
-          (v) => v.length <= 10 || "Must be shorter than 10 characters",
+          (v) => !!v || "Dodaj količinu",
+          (v) => v.length <= 10 || "Količina mora biti manja od 10 znakova",
         ],
         valid: false,
         listName: "",
@@ -91,11 +107,12 @@
         const listData = {
           listName: this.listName,
           items: this.list,
+          edit: false,
         };
-        this.listName = "";
-        this.list = [];
         this.$store.dispatch("createList", listData);
         this.$store.dispatch("loadLists");
+        this.listName = "";
+        this.list = [];
       },
       deleteItem(it) {
         this.list.splice(this.list.indexOf(it), 1);
@@ -103,3 +120,9 @@
     },
   };
 </script>
+
+<style scoped>
+  .color {
+    color: rgba(91, 230, 64, 0.685);
+  }
+</style>

@@ -31,7 +31,7 @@
 
 <style scoped>
   .main-background {
-    background-color: rgba(61, 58, 61, 0.473);
+    background-color: rgba(194, 197, 206, 0.473);
     min-height: 76%;
   }
 </style>

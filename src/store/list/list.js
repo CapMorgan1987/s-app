@@ -20,6 +20,9 @@ export const list = {
     update(state) {
       return state.loadedLists
     },
+    updateList(state) {
+      return state.loadLists
+    }
   },
   actions: {
     loadLists({ commit }) {
@@ -32,6 +35,7 @@ export const list = {
               id: key,
               listName: obj[key].listName,
               list: obj[key].list,
+              edit: obj[key].edit,
             })
           }
           commit("setLists", lists);
@@ -44,6 +48,7 @@ export const list = {
       const list = {
         listName: payload.listName,
         list: payload.items,
+        edit: payload.edit
       }
       firebase.database().ref('list').push(list)
         .then(() => {
@@ -62,22 +67,23 @@ export const list = {
 
           let isDone = snapshot.val().done;
           isDone = !done
-          console.log(isDone);
           changedItem.update({
             done: isDone
           })
         })
-
-        console.log(done);
-        console.log(changedItem);
         commit('update')
         //firebase.database().ref('todo')[id].push(changedTodo)  
       }
       catch (error) {
         console.log(error)
       }
-
     },
+    updateList({ commit }, { id, newItem }) {
+      const updatedList = firebase.database().ref('list/' + id + "/list")
+      updatedList.push(newItem)
+
+      commit('updateList')
+    }
   }
 }
 
