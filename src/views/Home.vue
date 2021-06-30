@@ -1,13 +1,15 @@
 <template>
-  <div>
-    <v-row>
-      <v-col cols="12" md="6">
-        <sab-shoplist />
-      </v-col>
-      <v-col cols="12" md="6">
-        <sab-todolist />
-      </v-col>
-    </v-row>
+  <div class="background-color">
+    <v-container class="mb-6">
+      <v-row>
+        <v-col cols="12" md="6">
+          <sab-shoplist />
+        </v-col>
+        <v-col cols="12" md="6">
+          <sab-todolist />
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
@@ -27,3 +29,9 @@
   };
 </script>
 
+<style scoped>
+  .background-color {
+    background-color: rgba(229, 238, 146, 0.521);
+    min-height: 76%;
+  }
+</style>

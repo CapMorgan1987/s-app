@@ -1,11 +1,7 @@
 <template>
   <v-app>
     <sab-header />
-    <v-main>
-      <v-container>
-        <router-view />
-      </v-container>
-    </v-main>
+    <router-view />
   </v-app>
 </template>
 
@@ -20,9 +16,6 @@
     }),
     components: {
       "sab-header": Header,
-    },
-    created() {
-      return this.$store.dispatch("geoLocation");
     },
   };
 </script>

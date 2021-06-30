@@ -38,7 +38,7 @@
           v-if="user && temp"
         >
           <p class="white--text mb-0">
-            Ciao {{ name }}, sada je {{ temp.main.temp }} ºC
+            Ciao {{ name }}, sada je {{ temp.current.temp }} ºC
           </p>
         </v-col>
       </v-row>
@@ -133,9 +133,9 @@
     mounted() {
       this.setupFirebase();
     },
-    // created() {
-    //   return this.$store.dispatch("loadOpenWeather");
-    // },
+    created() {
+      return this.$store.dispatch("geoLocation");
+    },
     watch: {
       group() {
         this.drawer = false;
