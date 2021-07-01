@@ -1,6 +1,6 @@
 <template>
-  <div class="main-background">
-    <v-container class="mb-6">
+  <div>
+    <v-container class="my-6">
       <v-row class="d-flex justify-center">
         <v-col cols="12" md="4">
           <v-form @submit.prevent="findCity" v-model="valid">

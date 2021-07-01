@@ -1,6 +1,6 @@
 <template>
   <div class="main-background">
-    <v-container class="mb-6">
+    <v-container class="my-6">
       <v-row>
         <v-col cols="12" md="6">
           <sab-shoplist />

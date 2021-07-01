@@ -2,6 +2,7 @@
   <div>
     <v-row class="d-flex justify-center">
       <v-col cols="12" md="8">
+        <h2 class="mb-4">Liste za spežu</h2>
         <v-card
           v-for="(list, i) in lists"
           height="auto"
