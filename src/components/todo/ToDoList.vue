@@ -33,9 +33,6 @@
 </template>
 
 <script>
-  // import axios from "axios";
-  //import firebase from "firebase/app";
-
   export default {
     name: "toDo",
     data() {

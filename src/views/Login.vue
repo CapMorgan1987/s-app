@@ -21,7 +21,6 @@
 </template>
 
 <script>
-  // import firebase from "firebase/app";
   import { auth } from "../firebase";
 
   export default {
@@ -35,20 +34,6 @@
     }),
 
     methods: {
-      // async login() {
-      //   try {
-      //     await auth
-      //       .signInWithEmailAndPassword(this.email, this.password)
-      //       .then((userCredential) => {
-      //         const { email, uid } = userCredential.user;
-      //         this.$store.dispatch("setUser", { email, uid });
-      //         this.$router.push("/");
-      //       });
-      //     console.log(auth);
-      //   } catch (error) {
-      //     alert(error.message);
-      //   }
-      // },
       login() {
         try {
           auth

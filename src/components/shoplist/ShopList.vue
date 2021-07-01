@@ -92,6 +92,7 @@
 
 <script>
   import firebase from "firebase/app";
+  import "firebase/database";
 
   export default {
     name: "ShopList",
@@ -130,8 +131,8 @@
         this.$store.dispatch("changeListDone", { id, i, done });
         return this.$store.dispatch("loadLists");
       },
-      deleteList(l) {
-        firebase.database().ref("list").child(l).remove();
+      deleteList(id) {
+        firebase.database().ref("list").child(id).remove();
         this.$store.dispatch("loadLists");
       },
       edit(i) {

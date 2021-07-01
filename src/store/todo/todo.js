@@ -1,5 +1,5 @@
-// import firebase from "firebase/app";
-import firebase from 'firebase'
+import firebase from "firebase/app";
+import 'firebase/database'
 
 export const todo = {
   state: {
@@ -78,7 +78,6 @@ export const todo = {
       try {
         const deleteTodo = firebase.database().ref("todo").child(id);
         deleteTodo.remove();
-        console.log(id)
         commit('delete');
       }
       catch (error) {

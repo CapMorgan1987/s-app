@@ -4,7 +4,7 @@ import VueRouter from "vue-router";
 import { routes } from './router/routes'
 import store from './store'
 import vuetify from './plugins/vuetify'
-import firebase from "firebase";
+import firebase from "firebase/app";
 import 'firebase/auth'
 
 Vue.config.productionTip = false

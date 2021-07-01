@@ -1,5 +1,5 @@
-// import firebase from "firebase/app";
-import firebase from 'firebase'
+import firebase from 'firebase/app';
+import 'firebase/database';
 
 export const list = {
   state: {
@@ -22,6 +22,10 @@ export const list = {
     },
     updateList(state) {
       return state.loadLists
+    },
+    delete(state) {
+      return state.loadedLists
+
     }
   },
   actions: {
@@ -59,6 +63,16 @@ export const list = {
         .catch((error) => {
           console.log(error)
         })
+    },
+    deleteList({ commit }, id) {
+      try {
+        const deleteList = firebase.database().ref("list").child(id);
+        deleteList.remove();
+        commit('delete');
+      }
+      catch (error) {
+        console.log(error)
+      }
     },
     changeListDone({ commit }, { id, i, done }) {
       try {

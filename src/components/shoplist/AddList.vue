@@ -99,7 +99,6 @@
         let quantity = this.items.quantity;
         let done = this.items.done;
         this.list.push({ item, quantity, done });
-        console.log(this.list);
         this.items.item = "";
         this.items.quantity = "";
       },
