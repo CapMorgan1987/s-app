@@ -3,6 +3,7 @@ import ToDo from "../views/ToDo.vue";
 import Shop from "../views/Shop.vue";
 import Login from "../views/Login.vue";
 import Weather from "../views/Weather.vue";
+import Calendar from "../views/Calendar.vue";
 
 export const routes = [
   {
@@ -22,6 +23,11 @@ export const routes = [
   },
   {
     path: "/weather", component: Weather, meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/calendar", component: Calendar, meta: {
       requiresAuth: true
     }
   },

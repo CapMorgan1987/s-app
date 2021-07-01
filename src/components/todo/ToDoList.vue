@@ -9,7 +9,7 @@
           class="d-flex justify-space-between align-center px-2 py-1 my-2"
           :class="{ 'is-done': todo.done }"
         >
-          <span>{{ todo.todo }}</span>
+          <span>{{ todo.name }}</span>
           <div>
             <v-btn
               :color="todo.done === false ? 'primary' : 'red'"

@@ -86,16 +86,19 @@ export const list = {
           })
         })
         commit('update')
-        //firebase.database().ref('todo')[id].push(changedTodo)  
       }
       catch (error) {
         console.log(error)
       }
     },
     updateList({ commit }, { id, newItem }) {
-      const updatedList = firebase.database().ref('list/' + id + "/list")
-      updatedList.push(newItem)
-
+      try {
+        const updatedList = firebase.database().ref('list/' + id + "/list/")
+        updatedList.push(newItem)
+      }
+      catch (error) {
+        console.log(error)
+      }
       commit('updateList')
     }
   }

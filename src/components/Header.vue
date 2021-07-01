@@ -76,6 +76,11 @@
               <v-list-item-title>Vrijeme</v-list-item-title>
             </v-list-item>
           </router-link>
+          <router-link to="/calendar">
+            <v-list-item color="#616161">
+              <v-list-item-title>Kalendar</v-list-item-title>
+            </v-list-item>
+          </router-link>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>

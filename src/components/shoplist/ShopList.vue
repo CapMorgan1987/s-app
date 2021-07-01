@@ -103,6 +103,7 @@
           quantity: "",
           done: false,
         },
+
         valid: false,
         listItemRules: [
           (v) => !!v || "Dodaj proizvod",

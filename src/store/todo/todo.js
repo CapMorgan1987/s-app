@@ -34,8 +34,12 @@ export const todo = {
           for (let key in obj) {
             todos.push({
               id: key,
-              todo: obj[key].todo,
-              done: obj[key].done
+              name: obj[key].name,
+              done: obj[key].done,
+              description: obj[key].description,
+              start: obj[key].start,
+              end: obj[key].end,
+              color: obj[key].color,
             })
           }
           commit("setTodos", todos);
@@ -46,8 +50,12 @@ export const todo = {
     },
     createTodo({ commit }, payload) {
       const todo = {
-        todo: payload.todo,
+        name: payload.name,
         done: payload.done,
+        description: payload.description,
+        start: payload.start,
+        end: payload.end,
+        color: payload.color,
       }
       firebase.database().ref('todo').push(todo)
         .then(() => {
