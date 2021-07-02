@@ -19,11 +19,7 @@
             solo
           >
           </v-text-field>
-          <v-btn
-            color="rgba(91, 230, 64, 0.685)"
-            @click="addItem"
-            :disabled="!valid"
-          >
+          <v-btn color="primary" @click="addItem" :disabled="!valid">
             <v-icon color="white">mdi-plus</v-icon>
             <span class="white--text">Dodaj proizvod</span>
           </v-btn>
@@ -100,9 +96,9 @@
         let quantity = this.items.quantity;
         let done = this.items.done;
         this.list.push({ item, quantity, done });
+        this.$refs.addList.reset();
         this.items.item = "";
         this.items.quantity = "";
-        this.$refs.addList.reset();
       },
       addList() {
         const listData = {
