@@ -81,7 +81,6 @@ export const list = {
 
           let isDone = snapshot.val().done;
           isDone = !done
-          console.log(i)
           changedItem.update({
             done: isDone
           })

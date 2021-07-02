@@ -2,11 +2,15 @@
   <div class="main-background">
     <v-container class="my-6">
       <v-row>
-        <v-col cols="12" md="6">
-          <sab-shoplist />
-        </v-col>
-        <v-col cols="12" md="6">
-          <sab-addlist />
+        <v-col cols="12">
+          <v-row>
+            <v-col cols="12" md="4">
+              <sab-shoplist />
+            </v-col>
+            <v-col cols="12" md="8">
+              <sab-addlist />
+            </v-col>
+          </v-row>
         </v-col>
       </v-row>
     </v-container>
