@@ -2,11 +2,15 @@
   <div class="main-background">
     <v-container class="my-6">
       <v-row>
-        <v-col cols="12" md="6">
-          <sab-todolist />
-        </v-col>
-        <v-col cols="12" md="6">
-          <sab-addtodo />
+        <v-col cols="12">
+          <v-row>
+            <v-col cols="12" md="4">
+              <sab-todolist />
+            </v-col>
+            <v-col cols="12" md="8">
+              <sab-addtodo />
+            </v-col>
+          </v-row>
         </v-col>
       </v-row>
     </v-container>
@@ -31,7 +35,7 @@
 
 <style scoped>
   .main-background {
-    background-color: rgba(189, 230, 173, 0.473);
+    background-color: rgba(189, 230, 173, 0.103);
     min-height: 76%;
   }
 </style>

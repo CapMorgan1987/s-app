@@ -2,13 +2,7 @@
   <div>
     <v-row class="d-flex justify-center">
       <v-col cols="12" md="6">
-        <v-form @submit.prevent="addList" v-model="valid">
-          <v-select
-            :items="shops"
-            label="Trgovina"
-            v-model="listName"
-            solo
-          ></v-select>
+        <v-form @submit.prevent="addList" v-model="valid" ref="addList">
           <v-text-field
             v-model="items.item"
             :rules="listItemRules"
@@ -34,6 +28,13 @@
             <span class="white--text">Dodaj proizvod</span>
           </v-btn>
           <div v-if="list">
+            <v-select
+              :items="shops"
+              label="Trgovina"
+              v-model="listName"
+              class="mt-5"
+              solo
+            ></v-select>
             <v-card
               v-for="item in list"
               :key="item.id"
@@ -101,6 +102,7 @@
         this.list.push({ item, quantity, done });
         this.items.item = "";
         this.items.quantity = "";
+        this.$refs.addList.reset();
       },
       addList() {
         const listData = {

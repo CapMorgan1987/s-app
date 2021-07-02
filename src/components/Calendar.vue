@@ -2,7 +2,7 @@
   <div>
     <v-row class="d-flex justify-center">
       <v-col>
-        <v-sheet tile height="54" class="d-flex">
+        <v-sheet tile height="54" class="d-flex" dark>
           <v-btn icon class="ma-2" @click="$refs.calendar.prev()">
             <v-icon>mdi-chevron-left</v-icon>
           </v-btn>
@@ -34,7 +34,7 @@
             ref="calendar"
             v-model="value"
             :events="todos"
-            color="primary"
+            color="grey"
             :type="type"
             :weekdays="weekday"
             @click:event="showEvent"
@@ -42,6 +42,7 @@
             @click:date="viewDay"
             locale="hr"
             interval-count="24"
+            dark
           ></v-calendar>
           <v-menu
             v-model="selectedOpen"

@@ -74,7 +74,6 @@ export const todo = {
           done: !done
         })
         commit('updateTodo')
-        console.log(done);
         //firebase.database().ref('todo')[id].push(changedTodo)
       }
       catch (error) {

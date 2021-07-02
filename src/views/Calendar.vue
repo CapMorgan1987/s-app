@@ -22,7 +22,7 @@
 
 <style scoped>
   .background-color {
-    background-color: rgba(79, 185, 226, 0.521);
+    background-color: rgb(214, 214, 214);
     min-height: 76%;
   }
 </style>
