@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row class="d-flex justify-center">
-      <v-col cols="12" md="8">
+      <v-col cols="12" md="10">
         <h2 class="mb-6">Zadaci</h2>
 
         <v-dialog

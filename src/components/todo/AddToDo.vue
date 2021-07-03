@@ -4,7 +4,7 @@
       <v-col cols="12" md="10">
         <h2 class="mb-4">Dodaj zadatak</h2>
       </v-col>
-      <v-col cols="12" md="12" class="add-todo">
+      <v-col cols="12" md="10" class="add-todo">
         <v-form @submit.prevent="addTodo" v-model="valid" ref="add">
           <v-row class="d-flex">
             <v-col cols="12" md="6">
@@ -240,7 +240,7 @@
 
 <style scoped>
   .add-todo {
-    border: 2px solid grey;
+    border: 2px solid rgb(255, 255, 255);
     border-radius: 15px;
     padding: 20px;
   }
