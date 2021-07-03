@@ -217,10 +217,11 @@
         const todoData = {
           name: this.name,
           description: this.description,
-          start: this.start + " " + this.endTime,
+          start: this.start + " " + this.startTime,
           end: this.end + " " + this.endTime,
           color: this.color,
           done: false,
+          editable: false,
         };
         this.$refs.add.reset();
         this.name = "";

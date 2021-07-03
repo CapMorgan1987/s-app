@@ -22,7 +22,6 @@ export const todo = {
     },
     delete(state) {
       return state.loadedTodos
-
     }
   },
   actions: {
@@ -40,6 +39,7 @@ export const todo = {
               start: obj[key].start,
               end: obj[key].end,
               color: obj[key].color,
+              editable: obj[key].editable
             })
           }
           commit("setTodos", todos);
@@ -56,6 +56,7 @@ export const todo = {
         start: payload.start,
         end: payload.end,
         color: payload.color,
+        editable: payload.editable
       }
       firebase.database().ref('todo').push(todo)
         .then(() => {
@@ -80,6 +81,23 @@ export const todo = {
         console.log(error)
       }
 
+    },
+    editTodo({ commit }, { newDescription, id }) {
+      try {
+        const changedTodo = firebase.database().ref('todo/' + id)
+        changedTodo.once('value').then(function (snapshot) {
+
+          let newD = snapshot.val().description
+          newD = newDescription
+          changedTodo.update({
+            description: newD
+          })
+        })
+        commit('updateTodo')
+      }
+      catch (error) {
+        console.log(error)
+      }
     },
     deleteTodo({ commit }, id) {
       try {

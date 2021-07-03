@@ -13,7 +13,7 @@
             outlined
             hide-details
             class="ma-2"
-            label="type"
+            label="Pregled"
           ></v-select>
           <v-select
             v-model="weekday"
@@ -21,7 +21,7 @@
             dense
             outlined
             hide-details
-            label="weekdays"
+            label="Raspon dana"
             class="ma-2"
           ></v-select>
           <v-spacer></v-spacer>
@@ -32,7 +32,7 @@
         <v-sheet height="600">
           <v-calendar
             ref="calendar"
-            v-model="value"
+            v-model="start"
             :events="todos"
             color="grey"
             :type="type"
@@ -52,24 +52,45 @@
           >
             <v-card color="grey lighten-4" min-width="350px" flat>
               <v-toolbar :color="selectedEvent.color" dark>
-                <v-btn icon>
+                <v-btn icon elevation="5" @click="editTodo()">
                   <v-icon>mdi-pencil</v-icon>
                 </v-btn>
                 <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
                 <v-spacer></v-spacer>
-                <v-btn icon>
-                  <v-icon>mdi-heart</v-icon>
-                </v-btn>
-                <v-btn icon>
-                  <v-icon>mdi-dots-vertical</v-icon>
+                <v-btn icon color="red" elevation="5">
+                  <v-icon>mdi-delete</v-icon>
                 </v-btn>
               </v-toolbar>
               <v-card-text>
-                <span v-html="selectedEvent.description"></span>
+                <p
+                  v-if="!selectedEvent.editable"
+                  v-html="selectedEvent.description"
+                ></p>
+                <div class="px-4">
+                  <v-text-field
+                    v-if="selectedEvent.editable"
+                    label="Opis zadatka"
+                    v-model="newDescription"
+                    :rules="descriptionRules"
+                  ></v-text-field>
+                </div>
               </v-card-text>
               <v-card-actions>
-                <v-btn text color="secondary" @click="selectedOpen = false">
-                  Cancel
+                <v-btn
+                  v-if="selectedEvent.editable === true"
+                  color="primary"
+                  type="submit"
+                  class="mb-3"
+                >
+                  <span
+                    class="white--text"
+                    @click="saveEditedTodo(newDescription, selectedEvent.id)"
+                    >Spremi</span
+                  >
+                </v-btn>
+                <v-spacer></v-spacer>
+                <v-btn text color="red" @click="selectedOpen = false">
+                  Zatvori
                 </v-btn>
               </v-card-actions>
             </v-card>
@@ -87,7 +108,7 @@
       type: "month",
       types: ["month", "week"],
       weekday: [1, 2, 3, 4, 5, 6, 0],
-      value: "",
+      start: "",
       weekdays: [
         { text: "Pon - Ned", value: [1, 2, 3, 4, 5, 6, 0] },
         { text: "Pon - Pet", value: [1, 2, 3, 4, 5] },
@@ -95,6 +116,15 @@
       selectedEvent: {},
       selectedElement: null,
       selectedOpen: false,
+      descriptionRules: [
+        (v) => !!v || "Dodaj opis",
+        (v) => v.length >= 3 || "Opis mora biti duži od 2 znaka",
+        (v) =>
+          (v.length >= 3 && v.length <= 160) ||
+          "Opis mora biti kraći od 161 znaka",
+      ],
+      valid: false,
+      newDescription: "",
     }),
     computed: {
       todos() {
@@ -138,6 +168,15 @@
         }
 
         nativeEvent.stopPropagation();
+      },
+      editTodo() {
+        this.selectedEvent.editable = true;
+      },
+      saveEditedTodo(newDescription, id) {
+        this.$store.dispatch("editTodo", { newDescription, id });
+        this.newDescription = "";
+        this.selectedEvent.editable = false;
+        return this.$store.dispatch("loadTodos");
       },
     },
   };
