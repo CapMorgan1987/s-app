@@ -77,7 +77,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-btn
-                  v-if="selectedEvent.editable === true"
+                  v-if="selectedEvent.editable"
                   color="primary"
                   type="submit"
                   class="mb-3"
