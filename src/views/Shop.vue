@@ -4,10 +4,10 @@
       <v-row>
         <v-col cols="12">
           <v-row>
-            <v-col cols="12" md="4">
+            <v-col cols="12" md="8">
               <sab-shoplist />
             </v-col>
-            <v-col cols="12" md="8">
+            <v-col cols="12" md="4">
               <sab-addlist />
             </v-col>
           </v-row>
@@ -35,7 +35,6 @@
 
 <style scoped>
   .main-background {
-    background-color: rgba(194, 197, 206, 0.473);
     min-height: 76%;
   }
 </style>

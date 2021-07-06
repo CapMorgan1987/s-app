@@ -1,14 +1,11 @@
 <template>
   <div>
-    <v-row class="d-flex justify-center">
-      <v-col cols="12" md="8">
-        <h2 class="mb-4">Liste za spežu</h2>
-        <v-card
-          v-for="(list, i) in lists"
-          height="auto"
-          :key="list.id"
-          class="mb-6"
-        >
+    <v-row>
+      <h2 class="mb-4 pl-4">Liste za spežu</h2>
+    </v-row>
+    <v-row class="d-flex justify-space-between">
+      <v-col cols="12" md="4" v-for="(list, i) in lists" :key="list.id">
+        <v-card height="auto" class="mb-6">
           <div class="pt-3">
             <v-menu bottom right>
               <template v-slot:activator="{ on, attrs }">

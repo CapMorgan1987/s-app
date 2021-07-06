@@ -3,7 +3,7 @@
     <v-container class="my-6">
       <v-row class="d-flex justify-center">
         <v-col cols="12" md="4">
-          <v-form @submit.prevent="findCity" v-model="valid" ref="chooseCity">
+          <v-form @submit.prevent="findCity" v-model="valid" ref="findCity">
             <v-text-field
               v-model="city"
               label="Grad..."
@@ -104,7 +104,7 @@
       findCity() {
         let city = this.city.toLowerCase();
         this.$store.dispatch("cityWeather", city);
-        this.$refs.chooseCity.reset();
+        this.$refs.findCity.reset();
         this.city = "";
         this.errorMsg = "";
       },
@@ -122,7 +122,6 @@
     background-color: rgba(173, 216, 230, 0.473);
   }
   .main-background {
-    background-color: rgba(173, 216, 230, 0.473);
     min-height: 76%;
   }
 </style>

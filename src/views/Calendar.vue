@@ -22,7 +22,6 @@
 
 <style scoped>
   .background-color {
-    background-color: rgb(214, 214, 214);
     min-height: 76%;
   }
 </style>

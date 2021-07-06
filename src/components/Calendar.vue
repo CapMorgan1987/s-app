@@ -2,7 +2,7 @@
   <div>
     <v-row class="d-flex justify-center">
       <v-col>
-        <v-sheet tile height="54" class="d-flex" dark>
+        <v-sheet tile height="54" class="d-flex">
           <v-btn icon class="ma-2" @click="$refs.calendar.prev()">
             <v-icon>mdi-chevron-left</v-icon>
           </v-btn>
@@ -15,6 +15,7 @@
             class="ma-2"
             label="Pregled"
           ></v-select>
+          <v-spacer></v-spacer>
           <v-select
             v-model="weekday"
             :items="weekdays"
@@ -24,7 +25,6 @@
             label="Raspon dana"
             class="ma-2"
           ></v-select>
-          <v-spacer></v-spacer>
           <v-btn icon class="ma-2" @click="$refs.calendar.next()">
             <v-icon>mdi-chevron-right</v-icon>
           </v-btn>
@@ -34,7 +34,7 @@
             ref="calendar"
             v-model="start"
             :events="todos"
-            color="grey"
+            color="#f1f1f1"
             :type="type"
             :weekdays="weekday"
             @click:event="showEvent"
@@ -42,15 +42,14 @@
             @click:date="viewDay"
             locale="hr"
             interval-count="24"
-            dark
           ></v-calendar>
           <v-menu
             v-model="selectedOpen"
             :close-on-content-click="false"
             :activator="selectedElement"
-            offset-x
+            offset-overflow
           >
-            <v-card color="grey lighten-4" min-width="350px" flat>
+            <v-card color="grey lighten-4" width="500px">
               <v-toolbar :color="selectedEvent.color" dark>
                 <v-btn icon elevation="5" @click="editTodo()">
                   <v-icon>mdi-pencil</v-icon>
@@ -89,9 +88,7 @@
                   >
                 </v-btn>
                 <v-spacer></v-spacer>
-                <v-btn text color="red" @click="selectedOpen = false">
-                  Zatvori
-                </v-btn>
+                <v-btn text color="red" @click="closeDialog"> Zatvori </v-btn>
               </v-card-actions>
             </v-card>
           </v-menu>
@@ -171,6 +168,10 @@
       },
       editTodo() {
         this.selectedEvent.editable = true;
+      },
+      closeDialog() {
+        this.selectedEvent.editable = false;
+        this.selectedOpen = false;
       },
       saveEditedTodo(newDescription, id) {
         this.$store.dispatch("editTodo", { newDescription, id });

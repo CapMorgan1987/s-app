@@ -1,7 +1,10 @@
 <template>
   <div>
-    <v-row class="d-flex justify-center">
-      <v-col cols="12" md="6">
+    <v-row>
+      <h2 class="mb-4 pl-10">Kreiraj listu</h2>
+    </v-row>
+    <v-row class="d-flex justify-center px-6">
+      <v-col cols="12">
         <v-form @submit.prevent="addList" v-model="valid" ref="addList">
           <v-text-field
             v-model="items.item"
