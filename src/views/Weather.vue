@@ -104,9 +104,9 @@
       findCity() {
         let city = this.city.toLowerCase();
         this.$store.dispatch("cityWeather", city);
-        this.$refs.findCity.reset();
         this.city = "";
         this.errorMsg = "";
+        this.$refs.findCity.reset();
       },
     },
     watch: {
