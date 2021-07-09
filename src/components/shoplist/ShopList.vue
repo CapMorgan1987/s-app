@@ -53,7 +53,14 @@
               @click="done(list.id, i, listItem.done)"
             >
               <v-icon v-if="!listItem.done">mdi-check</v-icon>
-              <v-icon v-else color="white">mdi-close</v-icon>
+              <v-icon v-else color="white">mdi-check</v-icon>
+            </v-btn>
+            <v-btn
+              color="red"
+              class="check-list-item"
+              @click="deleteItem(list.id, i)"
+            >
+              <v-icon color="white">mdi-delete</v-icon>
             </v-btn>
           </div>
           <div class="px-4" v-if="list.edit === true">
@@ -127,6 +134,10 @@
     methods: {
       done(id, i, done) {
         this.$store.dispatch("changeListDone", { id, i, done });
+        return this.$store.dispatch("loadLists");
+      },
+      deleteItem(id, i) {
+        this.$store.dispatch("deleteItem", { id, i });
         return this.$store.dispatch("loadLists");
       },
       deleteList(id) {

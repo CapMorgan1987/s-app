@@ -74,10 +74,20 @@ export const list = {
         console.log(error)
       }
     },
+    async deleteItem({ commit }, { id, i }) {
+      try {
+        const delItem = await firebase.database().ref("list/" + id + "/list/" + i)
+        delItem.remove()
+
+        commit('update')
+      } catch (error) {
+        console.log(error)
+      }
+    },
     changeListDone({ commit }, { id, i, done }) {
       try {
         const changedItem = firebase.database().ref('list/' + id + '/list/' + i)
-        changedItem.once('value').then(function (snapshot) {
+        changedItem.once('value').then((snapshot) => {
 
           let isDone = snapshot.val().done;
           isDone = !done
@@ -99,7 +109,7 @@ export const list = {
       catch (error) {
         console.log(error)
       }
-      commit('updateList')
+      commit('update')
     }
   }
 }
