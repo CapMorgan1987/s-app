@@ -4,7 +4,7 @@
       <h2 class="mb-4 pl-4">Liste za spežu</h2>
     </v-row>
     <v-row class="d-flex justify-space-between">
-      <v-col cols="12" md="4" v-for="(list, i) in lists" :key="list.id">
+      <v-col cols="12" md="4" v-for="(list, i) in lists" :key="i">
         <v-card height="auto" class="mb-6">
           <div class="pt-3">
             <v-menu bottom right>
@@ -54,13 +54,6 @@
             >
               <v-icon v-if="!listItem.done">mdi-check</v-icon>
               <v-icon v-else color="white">mdi-check</v-icon>
-            </v-btn>
-            <v-btn
-              color="red"
-              class="check-list-item"
-              @click="deleteItem(list.id, i)"
-            >
-              <v-icon color="white">mdi-delete</v-icon>
             </v-btn>
           </div>
           <div class="px-4" v-if="list.edit === true">
@@ -134,10 +127,6 @@
     methods: {
       done(id, i, done) {
         this.$store.dispatch("changeListDone", { id, i, done });
-        return this.$store.dispatch("loadLists");
-      },
-      deleteItem(id, i) {
-        this.$store.dispatch("deleteItem", { id, i });
         return this.$store.dispatch("loadLists");
       },
       deleteList(id) {
